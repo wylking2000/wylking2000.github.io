@@ -1,0 +1,9 @@
+# Site settings
+title: FrontEnder
+email: wylking2000@163.com
+description: > # 专注前端技术
+baseurl: "/"
+url: "http://www.frontender.cn"
+
+# Build settings
+markdown: kramdown
