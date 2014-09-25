@@ -1,9 +1,16 @@
 # Site settings
 title: FrontEnder
 email: wylking2000@163.com
-description: > # 专注前端技术
-baseurl: "/"
-url: "http://www.frontender.cn"
+author: Long Wang
+description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+baseurl: ""
+url: "/"
+google_analytics:
+animated: false
 
 # Build settings
 markdown: kramdown
+permalink: pretty
+paginate: 3
+sass:
+  compressed: true
