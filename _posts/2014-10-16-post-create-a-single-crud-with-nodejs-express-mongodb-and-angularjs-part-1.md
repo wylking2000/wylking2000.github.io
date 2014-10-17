@@ -36,7 +36,7 @@ Node.js是基于[Google V8 engine](https://code.google.com/p/v8/)，用C++编写
 
 [Angular.js](https://angularjs.org/)是一个客户端的MVVM(模型-视图-视图-模型)框架，用于创建单页面Web应用程序，我们会用它来跟Node.js提供的API进行交互。
 
-![image](http://cdn.memegenerator.net/instances/500x/50454122.jpg)
+![image](/images/50454122.jpg)
 
 ---
 
@@ -134,11 +134,11 @@ Node.js是基于[Google V8 engine](https://code.google.com/p/v8/)，用C++编写
 	
 如果你访问你的浏览器[http://localhost:8080](http://localhost:8080)你应该会看到：
 
-![image](http://kevinblanco.io/blog-img/hello-world.png)
+![image](/images/hello-world.png)
 
 #### 让我们继续往下走！
 
-![image](http://djebbz.github.io/presentation-livescript/meme.png)
+![image](/images/meme.png)
 
 #### 那么，刚才上面的语句是什么好意思呢？
 
@@ -659,33 +659,33 @@ Node.js是基于[Google V8 engine](https://code.google.com/p/v8/)，用C++编写
 
 打开Postman插件，首先让我们来测试一个简单地获取 `/tshirt` ：
 
-![image](http://kevinblanco.io/blog-img/first-get.png)
+![image](/images/first-get.png)
 
 就像你看到的，我们得到了一个空的数组，那就对了，**因为我们数据库里还没有任何一条tshirt记录！**
 
 **让我们新增一条tshirt记录**，切换Postman 方法到 **`POST`**添加上我们模型中定义的字段信息：
 
-![image](http://kevinblanco.io/blog-img/create.png)
+![image](/images/create.png)
 
 如果我们发送请求，我们就得到了**一条新的tshirt的记录：**
 
-![](http://kevinblanco.io/blog-img/create-response.png)
+![](/images/create-response.png)
 
 现在，让我们重新尝试**`GET`**请求`/tshirt`，我们会看到我们刚才创建的记录：
 
-![](http://kevinblanco.io/blog-img/second-get.png)
+![](/images/second-get.png)
 
 现在，让我们试一下**`UPDATE`**方法，让我们更新这条tshirt的价格为 `50000` 。粘贴好这条tshirt的ID属性，在请求中设置好：
 
-![](http://kevinblanco.io/blog-img/update-price.png)
+![](/images/update-price.png)
 
 确保却换到**`UPDATE`**方法，如果我们发送请求，我们会看到价格已经被更新了：
 
-![](http://kevinblanco.io/blog-img/update-response.png)
+![](/images/update-response.png)
 
 最后，我们试一下**`DELETE`**方法，切换方法到`DELETE`，然后像这样发送请求：
 
-![](http://kevinblanco.io/blog-img/delete.png)
+![](/images/delete.png)
 
 **你应该看到了OK status**，那表示你已经删除成功了。
 

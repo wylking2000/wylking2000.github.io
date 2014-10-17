@@ -38,7 +38,7 @@
 
 &lt;p&gt;&lt;a href=&quot;https://angularjs.org/&quot;&gt;Angular.js&lt;/a&gt;是一个客户端的MVVM(模型-视图-视图-模型)框架，用于创建单页面Web应用程序，我们会用它来跟Node.js提供的API进行交互。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://cdn.memegenerator.net/instances/500x/50454122.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/50454122.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -145,11 +145,11 @@ app.get(&#39;/&#39;, function(req, res) {
 
 &lt;p&gt;如果你访问你的浏览器&lt;a href=&quot;http://localhost:8080&quot;&gt;http://localhost:8080&lt;/a&gt;你应该会看到：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/hello-world.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/hello-world.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;section-3&quot;&gt;让我们继续往下走！&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://djebbz.github.io/presentation-livescript/meme.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/meme.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;section-4&quot;&gt;那么，刚才上面的语句是什么好意思呢？&lt;/h4&gt;
 
@@ -685,33 +685,33 @@ routes = require(&#39;./routes/tshirt&#39;)(app);
 
 &lt;p&gt;打开Postman插件，首先让我们来测试一个简单地获取 &lt;code&gt;/tshirt&lt;/code&gt; ：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/first-get.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/first-get.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;就像你看到的，我们得到了一个空的数组，那就对了，&lt;strong&gt;因为我们数据库里还没有任何一条tshirt记录！&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;让我们新增一条tshirt记录&lt;/strong&gt;，切换Postman 方法到 &lt;strong&gt;&lt;code&gt;POST&lt;/code&gt;&lt;/strong&gt;添加上我们模型中定义的字段信息：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/create.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/create.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;如果我们发送请求，我们就得到了&lt;strong&gt;一条新的tshirt的记录：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/create-response.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/create-response.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;现在，让我们重新尝试&lt;strong&gt;&lt;code&gt;GET&lt;/code&gt;&lt;/strong&gt;请求&lt;code&gt;/tshirt&lt;/code&gt;，我们会看到我们刚才创建的记录：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/second-get.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/second-get.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;现在，让我们试一下&lt;strong&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/strong&gt;方法，让我们更新这条tshirt的价格为 &lt;code&gt;50000&lt;/code&gt; 。粘贴好这条tshirt的ID属性，在请求中设置好：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/update-price.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/update-price.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;确保却换到&lt;strong&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/strong&gt;方法，如果我们发送请求，我们会看到价格已经被更新了：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/update-response.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/update-response.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;最后，我们试一下&lt;strong&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/strong&gt;方法，切换方法到&lt;code&gt;DELETE&lt;/code&gt;，然后像这样发送请求：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/delete.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/delete.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;你应该看到了OK status&lt;/strong&gt;，那表示你已经删除成功了。&lt;/p&gt;
 

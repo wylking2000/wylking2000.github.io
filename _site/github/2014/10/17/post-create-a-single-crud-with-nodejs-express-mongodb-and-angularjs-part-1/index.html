@@ -14,8 +14,10 @@
     <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
 
     <!-- Fonts -->
+    <!--
     <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    -->
 </head>
 
 <body class="">
@@ -77,7 +79,7 @@
 
 <p><a href="https://angularjs.org/">Angular.js</a>是一个客户端的MVVM(模型-视图-视图-模型)框架，用于创建单页面Web应用程序，我们会用它来跟Node.js提供的API进行交互。</p>
 
-<p><img src="http://cdn.memegenerator.net/instances/500x/50454122.jpg" alt="image" /></p>
+<p><img src="/images/50454122.jpg" alt="image" /></p>
 
 <hr />
 
@@ -184,11 +186,11 @@ app.get('/', function(req, res) {
 
 <p>如果你访问你的浏览器<a href="http://localhost:8080">http://localhost:8080</a>你应该会看到：</p>
 
-<p><img src="http://kevinblanco.io/blog-img/hello-world.png" alt="image" /></p>
+<p><img src="/images/hello-world.png" alt="image" /></p>
 
 <h4 id="section-3">让我们继续往下走！</h4>
 
-<p><img src="http://djebbz.github.io/presentation-livescript/meme.png" alt="image" /></p>
+<p><img src="/images/meme.png" alt="image" /></p>
 
 <h4 id="section-4">那么，刚才上面的语句是什么好意思呢？</h4>
 
@@ -724,33 +726,33 @@ routes = require('./routes/tshirt')(app);
 
 <p>打开Postman插件，首先让我们来测试一个简单地获取 <code>/tshirt</code> ：</p>
 
-<p><img src="http://kevinblanco.io/blog-img/first-get.png" alt="image" /></p>
+<p><img src="/images/first-get.png" alt="image" /></p>
 
 <p>就像你看到的，我们得到了一个空的数组，那就对了，<strong>因为我们数据库里还没有任何一条tshirt记录！</strong></p>
 
 <p><strong>让我们新增一条tshirt记录</strong>，切换Postman 方法到 <strong><code>POST</code></strong>添加上我们模型中定义的字段信息：</p>
 
-<p><img src="http://kevinblanco.io/blog-img/create.png" alt="image" /></p>
+<p><img src="/images/create.png" alt="image" /></p>
 
 <p>如果我们发送请求，我们就得到了<strong>一条新的tshirt的记录：</strong></p>
 
-<p><img src="http://kevinblanco.io/blog-img/create-response.png" alt="" /></p>
+<p><img src="/images/create-response.png" alt="" /></p>
 
 <p>现在，让我们重新尝试<strong><code>GET</code></strong>请求<code>/tshirt</code>，我们会看到我们刚才创建的记录：</p>
 
-<p><img src="http://kevinblanco.io/blog-img/second-get.png" alt="" /></p>
+<p><img src="/images/second-get.png" alt="" /></p>
 
 <p>现在，让我们试一下<strong><code>UPDATE</code></strong>方法，让我们更新这条tshirt的价格为 <code>50000</code> 。粘贴好这条tshirt的ID属性，在请求中设置好：</p>
 
-<p><img src="http://kevinblanco.io/blog-img/update-price.png" alt="" /></p>
+<p><img src="/images/update-price.png" alt="" /></p>
 
 <p>确保却换到<strong><code>UPDATE</code></strong>方法，如果我们发送请求，我们会看到价格已经被更新了：</p>
 
-<p><img src="http://kevinblanco.io/blog-img/update-response.png" alt="" /></p>
+<p><img src="/images/update-response.png" alt="" /></p>
 
 <p>最后，我们试一下<strong><code>DELETE</code></strong>方法，切换方法到<code>DELETE</code>，然后像这样发送请求：</p>
 
-<p><img src="http://kevinblanco.io/blog-img/delete.png" alt="" /></p>
+<p><img src="/images/delete.png" alt="" /></p>
 
 <p><strong>你应该看到了OK status</strong>，那表示你已经删除成功了。</p>
 
