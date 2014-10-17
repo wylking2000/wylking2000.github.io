@@ -7,6 +7,1087 @@
     <atom:link href="//feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>使用Node.js,Express,MongoDB和AngularJS创建简单地CRUD,第一部分</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;背景&lt;/h2&gt;
+
+&lt;p&gt;上周（三月30和31日）我参加了&lt;a href=&quot;http://www.barcamp.cr/&quot;&gt;2014哥斯达黎加BarCamp&lt;/a&gt;，是一种国际研讨会网络，此类研讨会是开放、由参与者相互分享的工作坊式会议，议程内容由参加者提供，焦点通常放在发展初期的网际应用程式、相关开放源代码技术、社交协定思维，以及开放资料格式。&lt;/p&gt;
+
+&lt;p&gt;我参加了，并作为嘉宾分享了 &lt;a href=&quot;https://slidebean.com/p/Ujc7VeEf7d/Nodejs-y-Emprendedurismo&quot;&gt;Nodejs和创业精神&lt;/a&gt;，Node是如何帮助人们更容易的建立原型、开发和架设一个Web应用，尤其是那些希望减少预算的创业者。其中一个出席者希望我能介绍一下Node.js操作MongoDB的简单CRUD，因此这就是我写这篇文章的动力。&lt;/p&gt;
+
+&lt;p&gt;尽管有简单地CRUD框架，比如&lt;a href=&quot;http://sailsjs.org/&quot;&gt;Sails.js&lt;/a&gt;或者&lt;a href=&quot;https://www.meteor.com/&quot;&gt;Meteor&lt;/a&gt;，我会尽可能比较容易的让你理解使用&lt;a href=&quot;http://expressjs.com/&quot;&gt;Express&lt;/a&gt;CRUD操作。&lt;/p&gt;
+
+&lt;h2 id=&quot;nodejs&quot;&gt;Node.js&lt;/h2&gt;
+
+&lt;p&gt;我们知道，&lt;a href=&quot;http://www.nodejs.org&quot;&gt;Node.js&lt;/a&gt;是服务端开发速度最快，方便扩展的JavaScript网络应用程序。它已经被创业公司或者中型企业如&lt;a href=&quot;https://www.uber.com/&quot;&gt;Uber&lt;/a&gt;或者&lt;a href=&quot;https://medium.com/&quot;&gt;Medium&lt;/a&gt;，甚至像&lt;a href=&quot;https://www.paypal-engineering.com/2013/11/22/node-js-at-paypal/&quot;&gt;PayPal&lt;/a&gt;或者&lt;a href=&quot;http://nodejs.org/video/&quot;&gt;Wallmart&lt;/a&gt;所采用，&lt;strong&gt;所以Node.js已经具备企业能力&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;Node.js是基于&lt;a href=&quot;https://code.google.com/p/v8/&quot;&gt;Google V8 engine&lt;/a&gt;，用C++编写，包括其他的Node.js核心组件。&lt;/p&gt;
+
+&lt;h2 id=&quot;expressjs&quot;&gt;Express.js&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://expressjs.com/&quot;&gt;Express&lt;/a&gt;是一个比较小的Web应用程序框架，用于构建性能优越的API。也有一些其他的Node.js框架，其实也是基于Express的，&lt;a href=&quot;http://nodeframework.com/&quot;&gt;点击这里查看完整列表&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;mongodb&quot;&gt;MongoDB&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.mongodb.org/&quot;&gt;MongoDB&lt;/a&gt; 是一个快速的、强壮的开源NoSQL文档数据库(JSON风格文档)，也是用C++编写的。&lt;/p&gt;
+
+&lt;h2 id=&quot;mongoose&quot;&gt;Mongoose&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://mongoosejs.com/&quot;&gt;Mongoose&lt;/a&gt;是一个为对象模型设计的ODM（对象文档映射器），提供了一个逻辑层用来写MongoDB验证、铸造、业务逻辑等功能。&lt;/p&gt;
+
+&lt;h2 id=&quot;angularjs&quot;&gt;Angular.js&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://angularjs.org/&quot;&gt;Angular.js&lt;/a&gt;是一个客户端的MVVM(模型-视图-视图-模型)框架，用于创建单页面Web应用程序，我们会用它来跟Node.js提供的API进行交互。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://cdn.memegenerator.net/instances/500x/50454122.jpg&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;动手&lt;/h2&gt;
+
+&lt;p&gt;现在，我来提供一个场景用于练习我们的例子。在第一部分，我们开发出API，第二部分我们在前端页面会使用到这些API。&lt;/p&gt;
+
+&lt;h3 id=&quot;nodejs-&quot;&gt;1- Node.js 安装&lt;/h3&gt;
+
+&lt;p&gt;在这一步之前你已经安装过Node.js，那这一步你就不用操作了。如果你没有安装，请从&lt;a href=&quot;http://nodejs.org/download/&quot;&gt;这里下载安装&lt;/a&gt;。&lt;strong&gt;如果你不知道是否安装过&lt;/strong&gt;，你只需要在你的电脑命令行里运行&lt;code&gt;node --version&lt;/code&gt;如果你能看到版本号就说明你已经安装了，否则表示未安装。&lt;/p&gt;
+
+&lt;h4 id=&quot;nodejs-1&quot;&gt;关于Node.js版本&lt;/h4&gt;
+
+&lt;p&gt;我鼓励你安装最新的稳定版本Node.js，这里有一个很方便的&lt;a href=&quot;https://github.com/visionmedia/n&quot;&gt;包叫“n”可以很方便的处理你机器上的Node.js版本&lt;/a&gt;，要安装这个包只需要运行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install -g n
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后安装最新稳定版本Node.js只需要执行如下语句：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;n stable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你想切换Node.js版本，你只需要运行 &lt;code&gt;n&lt;/code&gt; 你就可以选择Node.js的版本了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;n
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;packagejson&quot;&gt;2- 创建package.json文件&lt;/h3&gt;
+
+&lt;p&gt;你几乎会在任何一个Node.js项目中都会看到package.json文件。这个文件&lt;strong&gt;汇集了关于我们想怒的最基本和最重要的信息&lt;/strong&gt;就像项目名称、版本、依赖等。&lt;/p&gt;
+
+&lt;p&gt;一个最基本的package.json文件应该是这样的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+	&quot;name&quot;: &quot;simple-express-crud&quot;,
+	&quot;version&quot;: &quot;0.0.1&quot;,
+	&quot;author&quot;: &quot;Kevin Blanco&quot;,
+	&quot;description&quot;: &quot;Simple CRUD with Node.js, MongoDB, Mongoose and Express Framework&quot;,
+	&quot;scripts&quot;: {
+		&quot;start&quot;: &quot;node app.js&quot;
+	},
+	&quot;lincense&quot;: &quot;MIT&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在我们有了一个基本的JSON结构的文件，让我们来安装后面会用到的包。在输出控制台中，转到&lt;code&gt;package.json&lt;/code&gt;所在的目录，然后执行如下命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install express --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;和&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install mongoose --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;为了使用Express 4，我们需要安装 bodyParse，methodOverride 和 morgan&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm install morgan --save
+npm install body-parse --save
+npm install method-override --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;--save&lt;/code&gt;参数会帮助我们添加刚才安装的模块依赖语句到package.json文件的dependancies中。&lt;/p&gt;
+
+&lt;h3 id=&quot;appjs&quot;&gt;3- 创建app.js文件&lt;/h3&gt;
+
+&lt;p&gt;现在我们已经有package文件了，也安装了模块了，让我们开始编写JS代码 ：）。创建一个叫&lt;code&gt;app.js&lt;/code&gt;的文件，跟&lt;code&gt;package.json&lt;/code&gt;并列在同一个目录。（注意：如果你创建的文件不叫app.js，你需要在package.json中的scripts的start处修改成你创建的文件名称）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/*
+ 	* Main App file App.js
+ 	* @author Kevin Blanco
+ 	*/
+
+
+// Dependencies requirements, Express 4
+var express        = require(&#39;express&#39;);
+var morgan         = require(&#39;morgan&#39;);
+var bodyParser     = require(&#39;body-parser&#39;);
+var methodOverride = require(&#39;method-override&#39;);
+var mongoose        = require(&quot;mongoose&quot;);
+var app            = express();
+
+app.use(express.static(__dirname + &#39;/public&#39;));
+app.use(morgan(&#39;dev&#39;));
+app.use(bodyParser());
+app.use(methodOverride());
+
+app.listen(8080);
+console.log(&#39;Im listening on port 8080&#39;);
+
+// First example router
+app.get(&#39;/&#39;, function(req, res) {
+  res.send(&quot;Hello world!&quot;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;4- 运行这个应用！&lt;/h3&gt;
+
+&lt;p&gt;耶，现在&lt;strong&gt;让我们运行一下我们的应用！！&lt;/strong&gt;使用如下语句：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;node app.js
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果你访问你的浏览器&lt;a href=&quot;http://localhost:8080&quot;&gt;http://localhost:8080&lt;/a&gt;你应该会看到：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/hello-world.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;section-3&quot;&gt;让我们继续往下走！&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://djebbz.github.io/presentation-livescript/meme.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;section-4&quot;&gt;那么，刚才上面的语句是什么好意思呢？&lt;/h4&gt;
+
+&lt;p&gt;恩，上面只是一个简单地“Hello World”应用，让我们看一下是怎样做到的。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// Dependencies requirements, Express 4
+var express        = require(&#39;express&#39;);
+var morgan         = require(&#39;morgan&#39;);
+var bodyParser     = require(&#39;body-parser&#39;);
+var methodOverride = require(&#39;method-override&#39;);
+var mongoose        = require(&quot;mongoose&quot;);
+var app            = express();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;第一部分&lt;/strong&gt;加载了在我们的应用中会用到的各个依赖模块。&lt;code&gt;require(&#39;包名字&#39;)&lt;/code&gt;将会引入这个包，并把包里面的方法、属性什么的暴露出来，方便我们的引用和使用。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;app.use(express.static(__dirname + &#39;/public&#39;));
+app.use(morgan(&#39;dev&#39;));
+app.use(bodyParser());
+app.use(methodOverride());
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;第二部分&lt;/strong&gt;会应用一些设置让Express去运行。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;app.listen(8080);
+console.log(&#39;Im listening on port 8080&#39;);
+
+// First example router
+app.get(&#39;/&#39;, function(req, res) {
+  res.send(&quot;Hello world!&quot;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;最后这部分&lt;/strong&gt;会让Express应用监听我们设置的端口，我们同时也定义了&lt;strong&gt;第一个路由&lt;/strong&gt;虽然只是简单的返回GET请求：“Hello World”。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;5- 定义应用的数据模型&lt;/h3&gt;
+
+&lt;p&gt;一个数据模型就是让计算机可以理解的一个对象的属性和相互关系的描述，在我们得例子中，我们只有一个简单的数据模型叫&lt;code&gt;tshirt&lt;/code&gt;，因为我们的应用会展示关于&lt;code&gt;Tshirt&lt;/code&gt;的信息。&lt;/p&gt;
+
+&lt;p&gt;新建一个‘models’文件夹，在这个文件夹里面创建一个&lt;code&gt;tshirt.js&lt;/code&gt;文件，我们将会放置关于&lt;code&gt;Tshirt&lt;/code&gt;数据模型的代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/**
+ * Tshirt
+ *
+ * @module      :: Model
+ * @description :: Represent data model for the Tshirts
+ * @author        :: Kevin Blanco
+ */
+
+var mongoose = require(&#39;mongoose&#39;);
+var Schema = mongoose.Schema;
+
+
+var Tshirt = new Schema({
+
+  model:    {
+    type    : String,
+    require : true
+  },
+  style:    {
+    type    : String,
+    enum    :  [&#39;Casual&#39;, &#39;Vintage&#39;, &#39;Alternative&#39;],
+    require : true
+  },
+  size:     {
+    type    : Number,
+    enum    : [36, 38, 40, 42, 44, 46],
+    require : true
+  },
+  color:   {
+    type: String
+  },
+  price :   {
+    type    : Number,
+    require : true
+  },
+  modified: {
+    type    : Date,
+    default : Date.now
+  }
+});
+
+Tshirt.path(&#39;model&#39;).validate(function (v) {
+  return ((v != &quot;&quot;) &amp;amp;&amp;amp; (v != null));
+});
+
+module.exports = mongoose.model(&#39;Tshirt&#39;, Tshirt);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;从根本上说，我们已经设计了一个关于&lt;code&gt;Tshirt&lt;/code&gt;的模型，具有如下几个属性：款式、风格、尺寸、颜色、价格，任何一个字段的修改都会让这个模型发生变化。&lt;/p&gt;
+
+&lt;h3 id=&quot;mongodb-1&quot;&gt;6- 连接到MongoDB&lt;/h3&gt;
+
+&lt;p&gt;我们需要建立从应用程序到MongoDB数据库的连接，然后存储我们的文档数据。&lt;/p&gt;
+
+&lt;p&gt;首先，&lt;strong&gt;你需要在本地安装MongoDB&lt;/strong&gt;，请&lt;a href=&quot;http://docs.mongodb.org/manual/installation/&quot;&gt;移步到MongoDB站点&lt;/a&gt;按照指引安装。如果你用的是Mac电脑，我推荐你使用&lt;a href=&quot;http://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;进行安装，如果你使用的是Windows电脑，我建议你要有&lt;strong&gt;耐心&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;好了，如果你已经正确安装了MongoDB，确保你的&lt;strong&gt;守护进程已经运行&lt;/strong&gt;（如果是Mac，你需要在终端里运行&lt;code&gt;mongod&lt;/code&gt;）。&lt;/p&gt;
+
+&lt;p&gt;现在，让我们回到&lt;code&gt;app.js&lt;/code&gt;文件，在Express配置后面添加如下代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// MongoDB configuration
+mongoose.connect(&#39;mongodb://localhost/tshirt&#39;, function(err, res) {
+  if(err) {
+    console.log(&#39;error connecting to MongoDB Database. &#39; + err);
+  } else {
+    console.log(&#39;Connected to Database&#39;);
+  }
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这段代码会让我们的应用程序连接MongoDB里的&lt;code&gt;tshirt&lt;/code&gt;集合。如果我们重新运行&lt;code&gt;node app.js&lt;/code&gt;我们将会看到控制台如下输出：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Im listening on port 8080
+Connected to Database
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们得&lt;code&gt;app.js&lt;/code&gt;文件&lt;strong&gt;现在应该是这样的了：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/*
+ * Main App file App.js
+ * @author Kevin Blanco
+ */
+
+
+// Dependencies requirements, Express 4
+var express        = require(&#39;express&#39;);
+var morgan         = require(&#39;morgan&#39;);
+var bodyParser     = require(&#39;body-parser&#39;);
+var methodOverride = require(&#39;method-override&#39;);
+var mongoose       = require(&quot;mongoose&quot;);
+var app            = express();
+
+app.use(express.static(__dirname + &#39;/public&#39;)); 
+app.use(morgan(&#39;dev&#39;)); 
+app.use(bodyParser()); 
+app.use(methodOverride());
+
+
+// MongoDB configuration
+mongoose.connect(&#39;mongodb://localhost/tshirt&#39;, function(err, res) {
+  if(err) {
+    console.log(&#39;error connecting to MongoDB Database. &#39; + err);
+  } else {
+    console.log(&#39;Connected to Database&#39;);
+  }
+});
+
+app.listen(8080);
+console.log(&#39;Im listening on port 8080&#39;); 
+
+// First example router
+app.get(&#39;/&#39;, function(req, res) {
+  res.send(&quot;Hello world!&quot;);
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;所以现在我们最好开始开发跟数据模型的交互动作和创建相关的路由动作（也就是控制器的工作）。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;7- 创建路由和绑定动作&lt;/h3&gt;
+
+&lt;p&gt;创建一个新的文件夹&lt;code&gt;routes&lt;/code&gt;并在里面创建一个文件叫&lt;code&gt;tshirt.js&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;添加如下代码到&lt;code&gt;tshirt.js&lt;/code&gt;，代码看起来很多，但是我会挨个部分进行介绍：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/**
+ * Tshirt
+ *
+ * @module      :: Routes
+ * @description :: Maps routes and actions
+ * @author        :: Kevin Blanco
+ */
+
+var Tshirt = require(&#39;../models/tshirt.js&#39;);
+
+module.exports = function(app) {
+
+
+  /**
+   * Find and retrieves all tshirts
+   * @param {Object} req HTTP request object.
+   * @param {Object} res HTTP response object.
+   */
+  findAllTshirts = function(req, res) {
+    console.log(&quot;GET - /tshirts&quot;);
+    return Tshirt.find(function(err, tshirts) {
+      if(!err) {
+        return res.send(tshirts);
+      } else {
+	    res.statusCode = 500;
+    	console.log(&#39;Internal error(%d): %s&#39;,res.statusCode,err.message);
+        return res.send({ error: &#39;Server error&#39; });
+      }
+    });
+  };
+
+
+
+  /**
+   * Find and retrieves a single tshirt by its ID
+   * @param {Object} req HTTP request object.
+   * @param {Object} res HTTP response object.
+   */
+  findById = function(req, res) {
+
+    console.log(&quot;GET - /tshirt/:id&quot;);
+    return Tshirt.findById(req.params.id, function(err, tshirt) {
+
+      if(!tshirt) {
+        res.statusCode = 404;
+        return res.send({ error: &#39;Not found&#39; });
+      }
+
+      if(!err) {
+        return res.send({ status: &#39;OK&#39;, tshirt:tshirt });
+      } else {
+
+        res.statusCode = 500;
+        console.log(&#39;Internal error(%d): %s&#39;, res.statusCode, err.message);
+        return res.send({ error: &#39;Server error&#39; });
+      }
+    });
+  };
+
+
+
+
+  /**
+   * Creates a new tshirt from the data request
+   * @param {Object} req HTTP request object.
+   * @param {Object} res HTTP response object.
+   */
+  addTshirt = function(req, res) {
+
+    console.log(&#39;POST - /tshirt&#39;);
+
+    var tshirt = new Tshirt({
+      model:    req.body.model,
+      style:    req.body.style,
+      size :    req.body.size,
+	  color:    req.body.color,
+      price:    req.body.price
+    });
+
+    tshirt.save(function(err) {
+
+      if(err) {
+
+        console.log(&#39;Error while saving tshirt: &#39; + err);
+        res.send({ error:err });
+        return;
+
+      } else {
+
+        console.log(&quot;Tshirt created&quot;);
+        return res.send({ status: &#39;OK&#39;, tshirt:tshirt });
+
+      }
+
+    });
+
+  };
+
+
+
+  /**
+   * Update a tshirt by its ID
+   * @param {Object} req HTTP request object.
+   * @param {Object} res HTTP response object.
+   */
+  updateTshirt = function(req, res) {
+
+    console.log(&quot;PUT - /tshirt/:id&quot;);
+    return Tshirt.findById(req.params.id, function(err, tshirt) {
+
+      if(!tshirt) {
+        res.statusCode = 404;
+        return res.send({ error: &#39;Not found&#39; });
+      }
+
+      if (req.body.model != null) tshirt.model = req.body.model;
+      if (req.body.price != null) tshirt.price = req.body.price;
+      if (req.body.style != null) tshirt.style = req.body.style;
+      if (req.body.size != null) tshirt.size  = req.body.size;
+      if (req.body.colour != null) tshirt.color = req.body.color;
+
+      return tshirt.save(function(err) {
+        if(!err) {
+          console.log(&#39;Updated&#39;);
+          return res.send({ status: &#39;OK&#39;, tshirt:tshirt });
+        } else {
+          if(err.name == &#39;ValidationError&#39;) {
+            res.statusCode = 400;
+            res.send({ error: &#39;Validation error&#39; });
+          } else {
+            res.statusCode = 500;
+            res.send({ error: &#39;Server error&#39; });
+          }
+          console.log(&#39;Internal error(%d): %s&#39;,res.statusCode,err.message);
+        }
+
+        res.send(tshirt);
+
+      });
+    });
+  };
+
+
+
+  /**
+   * Delete a tshirt by its ID
+   * @param {Object} req HTTP request object.
+   * @param {Object} res HTTP response object.
+   */
+  deleteTshirt = function(req, res) {
+
+    console.log(&quot;DELETE - /tshirt/:id&quot;);
+    return Tshirt.findById(req.params.id, function(err, tshirt) {
+      if(!tshirt) {
+        res.statusCode = 404;
+        return res.send({ error: &#39;Not found&#39; });
+      }
+
+      return tshirt.remove(function(err) {
+        if(!err) {
+          console.log(&#39;Removed tshirt&#39;);
+          return res.send({ status: &#39;OK&#39; });
+        } else {
+          res.statusCode = 500;
+          console.log(&#39;Internal error(%d): %s&#39;,res.statusCode,err.message);
+          return res.send({ error: &#39;Server error&#39; });
+        }
+      })
+    });
+  }
+
+  //Link routes and actions
+  app.get(&#39;/tshirt&#39;, findAllTshirts);
+  app.get(&#39;/tshirt/:id&#39;, findById);
+  app.post(&#39;/tshirt&#39;, addTshirt);
+  app.put(&#39;/tshirt/:id&#39;, updateTshirt);
+  app.delete(&#39;/tshirt/:id&#39;, deleteTshirt);
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;好了，&lt;strong&gt;上面代码都做了些什么？&lt;/strong&gt;，让我们每个方法都看一下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   /**
+   * Find and retrieves all tshirts
+   * @param {Object} req HTTP request object.
+   * @param {Object} res HTTP response object.
+   */
+  findAllTshirts = function(req, res) {
+    console.log(&quot;GET - /tshirts&quot;);
+    return Tshirt.find(function(err, tshirts) {
+      if(!err) {
+        return res.send(tshirts);
+      } else {
+        res.statusCode = 500;
+        console.log(&#39;Internal error(%d): %s&#39;,res.statusCode,err.message);
+        return res.send({ error: &#39;Server error&#39; });
+      }
+    });
+  };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个方法用来&lt;strong&gt;获取所有的tshrits&lt;/strong&gt;，就像你在文件头部看到的，我们“require”了Tshirt模型，&lt;code&gt;var Tshirt=require(&#39;../models/tshirt.js&#39;);&lt;/code&gt;使用上面的对象我们可以在引用中查询和存储tshirt。在查询的回调函数中，我们处理了错误异常，如果一切顺利，我们就返回(&lt;code&gt;responde&lt;/code&gt;)查询的tshirt(&lt;code&gt;return res.send(tshirts);&lt;/code&gt;)。让我们看下&lt;strong&gt;第二个函数&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; /**
+ * Find and retrieves a single tshirt by its ID
+ * @param {Object} req HTTP request object.
+ * @param {Object} res HTTP response object.
+ */
+findById = function(req, res) {
+
+  console.log(&quot;GET - /tshirt/:id&quot;);
+  return Tshirt.findById(req.params.id, function(err, tshirt) {
+
+    if(!tshirt) {
+      res.statusCode = 404;
+      return res.send({ error: &#39;Not found&#39; });
+    }
+
+    if(!err) {
+      return res.send({ status: &#39;OK&#39;, tshirt:tshirt });
+    } else {
+
+      res.statusCode = 500;
+      console.log(&#39;Internal error(%d): %s&#39;, res.statusCode, err.message);
+      return res.send({ error: &#39;Server error&#39; });
+    }
+  });
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在这个方法中，我们通过tshirt ID处理单一的一个tshirt。我们应该在request中传入（&lt;code&gt;/tshirt/:id&lt;/code&gt;）。我们使用&lt;code&gt;findById&lt;/code&gt;方法，根据传入的ID，在回调函数中返回查询结果。回调函数同样会处理异常情况，如果顺利，我们也会得到这样得返回：&lt;code&gt;return res.send({status: &#39;OK&#39;, tshirt: tshirt});&lt;/code&gt; 让我们继续看&lt;strong&gt;第三个函数&lt;/strong&gt;： &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/**
+ * Creates a new tshirt from the data request
+ * @param {Object} req HTTP request object.
+ * @param {Object} res HTTP response object.
+ */
+addTshirt = function(req, res) {
+
+  console.log(&#39;POST - /tshirt&#39;);
+
+  var tshirt = new Tshirt({
+    model:    req.body.model,
+    style:    req.body.style,
+    size :    req.body.size,
+    color:    req.body.color,
+    price:    req.body.price
+  });
+
+  tshirt.save(function(err) {
+
+    if(err) {
+
+      console.log(&#39;Error while saving tshirt: &#39; + err);
+      res.send({ error:err });
+      return;
+
+    } else {
+
+      console.log(&quot;Tshirt created&quot;);
+      return res.send({ status: &#39;OK&#39;, tshirt:tshirt });
+
+    }
+
+  });
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在这个函数中，我们创建了一条新的tshirt记录。我并没有校验任何数据的正确性，因为在&lt;code&gt;Tshirt&lt;/code&gt;模型中我们定义了&lt;code&gt;必填字段&lt;/code&gt;，如果存储过程中发现必填字段缺失Mongoose就会做出提醒。&lt;/p&gt;
+
+&lt;p&gt;当然，我也会在前端使用AngularJS校验数据，所以只要我们确保使用正确的数据请求就可以了，现在让我们看&lt;strong&gt;第四个函数&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; /**
+ * Update a tshirt by its ID
+ * @param {Object} req HTTP request object.
+ * @param {Object} res HTTP response object.
+ */
+updateTshirt = function(req, res) {
+
+  console.log(&quot;PUT - /tshirt/:id&quot;);
+  return Tshirt.findById(req.params.id, function(err, tshirt) {
+
+    if(!tshirt) {
+      res.statusCode = 404;
+      return res.send({ error: &#39;Not found&#39; });
+    }
+
+    if (req.body.model != null) tshirt.model = req.body.model;
+    if (req.body.price != null) tshirt.price = req.body.price;
+    if (req.body.style != null) tshirt.style = req.body.style;
+    if (req.body.size != null) tshirt.size  = req.body.size;
+    if (req.body.colour != null) tshirt.color = req.body.color;
+
+    return tshirt.save(function(err) {
+      if(!err) {
+        console.log(&#39;Updated&#39;);
+        return res.send({ status: &#39;OK&#39;, tshirt:tshirt });
+      } else {
+        if(err.name == &#39;ValidationError&#39;) {
+          res.statusCode = 400;
+          res.send({ error: &#39;Validation error&#39; });
+        } else {
+          res.statusCode = 500;
+          res.send({ error: &#39;Server error&#39; });
+        }
+        console.log(&#39;Internal error(%d): %s&#39;,res.statusCode,err.message);
+      }
+
+      res.send(tshirt);
+
+    });
+  });
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是最大的一个函数了。&lt;code&gt;updateTshirt&lt;/code&gt;函数会根据ID更新tshirt的任何字段。总体来说，我们需要校验任何一个在&lt;code&gt;req.body&lt;/code&gt;中的字段。我们处理异常，更新tshirt。现在让我们看&lt;strong&gt;最后一个函数&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; /**
+ * Delete a tshirt by its ID
+ * @param {Object} req HTTP request object.
+ * @param {Object} res HTTP response object.
+ */
+deleteTshirt = function(req, res) {
+
+  console.log(&quot;DELETE - /tshirt/:id&quot;);
+  return Tshirt.findById(req.params.id, function(err, tshirt) {
+    if(!tshirt) {
+      res.statusCode = 404;
+      return res.send({ error: &#39;Not found&#39; });
+    }
+
+    return tshirt.remove(function(err) {
+      if(!err) {
+        console.log(&#39;Removed tshirt&#39;);
+        return res.send({ status: &#39;OK&#39; });
+      } else {
+        res.statusCode = 500;
+        console.log(&#39;Internal error(%d): %s&#39;,res.statusCode,err.message);
+        return res.send({ error: &#39;Server error&#39; });
+      }
+    })
+  });
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个函数中，我们根据ID删除了一条记录。我们从&lt;code&gt;req.params&lt;/code&gt;中获取ID，我们使用&lt;code&gt;tshirt.remove&lt;/code&gt;方法移出这条记录。&lt;/p&gt;
+
+&lt;p&gt;最后，我们&lt;strong&gt;绑定这些路由&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//Link routes and actions
+app.get(&#39;/tshirt&#39;, findAllTshirts);
+app.get(&#39;/tshirt/:id&#39;, findById);
+app.post(&#39;/tshirt&#39;, addTshirt);
+app.put(&#39;/tshirt/:id&#39;, updateTshirt);
+app.delete(&#39;/tshirt/:id&#39;, deleteTshirt);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;把这个文件路由引入到&lt;code&gt;app.js&lt;/code&gt;中&lt;/strong&gt;，放在数据库连接之前：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//Add the routes
+routes = require(&#39;./routes/tshirt&#39;)(app);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这就是一个&lt;code&gt;Tshirt&lt;/code&gt;的CRUD操作了，让我们使用 &lt;a href=&quot;https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm/related&quot;&gt;Chrome的Postman Rest Client&lt;/a&gt; 插件来测试他们。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;8-测试应用&lt;/h3&gt;
+
+&lt;p&gt;打开Postman插件，首先让我们来测试一个简单地获取 &lt;code&gt;/tshirt&lt;/code&gt; ：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/first-get.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;就像你看到的，我们得到了一个空的数组，那就对了，&lt;strong&gt;因为我们数据库里还没有任何一条tshirt记录！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;让我们新增一条tshirt记录&lt;/strong&gt;，切换Postman 方法到 &lt;strong&gt;&lt;code&gt;POST&lt;/code&gt;&lt;/strong&gt;添加上我们模型中定义的字段信息：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/create.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果我们发送请求，我们就得到了&lt;strong&gt;一条新的tshirt的记录：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/create-response.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;现在，让我们重新尝试&lt;strong&gt;&lt;code&gt;GET&lt;/code&gt;&lt;/strong&gt;请求&lt;code&gt;/tshirt&lt;/code&gt;，我们会看到我们刚才创建的记录：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/second-get.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;现在，让我们试一下&lt;strong&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/strong&gt;方法，让我们更新这条tshirt的价格为 &lt;code&gt;50000&lt;/code&gt; 。粘贴好这条tshirt的ID属性，在请求中设置好：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/update-price.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;确保却换到&lt;strong&gt;&lt;code&gt;UPDATE&lt;/code&gt;&lt;/strong&gt;方法，如果我们发送请求，我们会看到价格已经被更新了：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/update-response.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最后，我们试一下&lt;strong&gt;&lt;code&gt;DELETE&lt;/code&gt;&lt;/strong&gt;方法，切换方法到&lt;code&gt;DELETE&lt;/code&gt;，然后像这样发送请求：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://kevinblanco.io/blog-img/delete.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;你应该看到了OK status&lt;/strong&gt;，那表示你已经删除成功了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;结束语&lt;/h2&gt;
+
+&lt;p&gt;我们现在就完成了&lt;strong&gt;Node、Express、MongoDB、Mongoose操作CRUD&lt;/strong&gt;。在下一章，我们将会创建前端AngularJS代码衔接这章里写的接口。&lt;/p&gt;
+
+&lt;h2 id=&quot;github&quot;&gt;本章github代码&lt;/h2&gt;
+
+&lt;p&gt;这个例子的代码也已经放到Github中了，如果你一时没有跟上，或者有不懂的地方，可以在&lt;a href=&quot;https://github.com/kevinblanco/nodejs-express-crud&quot;&gt;这里检出代码&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;希望你能喜欢，谢谢！&lt;/p&gt;
+
+&lt;p&gt;原文：http://blog.kevinblanco.io/creating-a-simple-crud-with-node-js-express-mongodb-and-angularjs-part-1/&lt;/p&gt;
+</description>
+        <pubDate>Fri, 17 Oct 2014 19:21:29 +0800</pubDate>
+        <link>//github/2014/10/17/post-create-a-single-crud-with-nodejs-express-mongodb-and-angularjs-part-1/</link>
+        <guid isPermaLink="true">//github/2014/10/17/post-create-a-single-crud-with-nodejs-express-mongodb-and-angularjs-part-1/</guid>
+      </item>
+    
+      <item>
+        <title>Velocity用户手册</title>
+        <description>&lt;ol&gt;
+  &lt;li&gt;关于这个手册&lt;/li&gt;
+  &lt;li&gt;什么是Velocity？&lt;/li&gt;
+  &lt;li&gt;Velocity可以做什么？
+    &lt;ol&gt;
+      &lt;li&gt;一个Mud Store 列子 &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;我应该用哪个jar包？
+    &lt;ol&gt;
+      &lt;li&gt;专家用户&lt;/li&gt;
+      &lt;li&gt;其他用户 &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Velocity模板语言(VTL)：介绍&lt;/li&gt;
+  &lt;li&gt;Hello Velocity Word!&lt;/li&gt;
+  &lt;li&gt;评论&lt;/li&gt;
+  &lt;li&gt;参考
+    &lt;ol&gt;
+      &lt;li&gt;变量&lt;/li&gt;
+      &lt;li&gt;属性&lt;/li&gt;
+      &lt;li&gt;方法&lt;/li&gt;
+      &lt;li&gt;属性查询规则&lt;/li&gt;
+      &lt;li&gt;渲染&lt;/li&gt;
+      &lt;li&gt;指数表示法 &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;正式的参考符号&lt;/li&gt;
+  &lt;li&gt;静态引用符号&lt;/li&gt;
+  &lt;li&gt;严格引用模式&lt;/li&gt;
+  &lt;li&gt;替换规则&lt;/li&gt;
+  &lt;li&gt;指令
+    &lt;ol&gt;
+      &lt;li&gt;设置&lt;/li&gt;
+      &lt;li&gt;常量&lt;/li&gt;
+      &lt;li&gt;if-else 语句
+        &lt;ol&gt;
+          &lt;li&gt;关系和逻辑操作符&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Foreach 循环&lt;/li&gt;
+      &lt;li&gt;Include&lt;/li&gt;
+      &lt;li&gt;解析模板&lt;/li&gt;
+      &lt;li&gt;Break&lt;/li&gt;
+      &lt;li&gt;Stop&lt;/li&gt;
+      &lt;li&gt;求值&lt;/li&gt;
+      &lt;li&gt;定义&lt;/li&gt;
+      &lt;li&gt;宏调用&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;获得常量
+    &lt;ol&gt;
+      &lt;li&gt;货币标识&lt;/li&gt;
+      &lt;li&gt;封装有效的VTL引用&lt;/li&gt;
+      &lt;li&gt;封装无效的VTL引用&lt;/li&gt;
+      &lt;li&gt;封装VTL指令&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;VTL：格式化问题&lt;/li&gt;
+  &lt;li&gt;其他特性和细节
+    &lt;ol&gt;
+      &lt;li&gt;Math方法&lt;/li&gt;
+      &lt;li&gt;取值范围操作&lt;/li&gt;
+      &lt;li&gt;高级问题：转移和!&lt;/li&gt;
+      &lt;li&gt;关于宏的一些问题&lt;/li&gt;
+      &lt;li&gt;字符串连接&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;反馈&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;关于这个手册&lt;/h2&gt;
+&lt;p&gt;Velocity用户手册是想帮助页面设计者和页面内容提供者更快的熟悉简单而强大的Velocity模板语言。这本手册里面包含了大量的动态嵌入内容的例子，但是这些例子也同样适用其他页面和模板。&lt;/p&gt;
+
+&lt;p&gt;感谢使用Velocity！
+## 什么是Velocity
+Velocity是一个基于Java的模板引擎。允许网页设计者引用在Java中定义的方法。网页设计者可以跟并行跟后端程序员根据模型-视图-控制器。这意味着前端同学可以独自专注的做良好设计的前端页面，后端程序员可以独自专注的开发一流的后端代码。Velocity把Java代码和Web页面分离开来，是网站从长远来看更易于维护和提供一个可行的替代Java服务器页面(jsp)或PHP。&lt;/p&gt;
+</description>
+        <pubDate>Fri, 17 Oct 2014 05:42:29 +0800</pubDate>
+        <link>//github/2014/10/17/post-velocity-user-guide/</link>
+        <guid isPermaLink="true">//github/2014/10/17/post-velocity-user-guide/</guid>
+      </item>
+    
+      <item>
+        <title>编写JavaScript应用程序</title>
+        <description>&lt;p&gt;作者：埃里克·艾略特&lt;/p&gt;
+
+&lt;p&gt;Copyright © 2014 Eric Elliott&lt;/p&gt;
+
+&lt;h5 id=&quot;section&quot;&gt;目录&lt;/h5&gt;
+
+&lt;h6 id=&quot;section-1&quot;&gt;前言&lt;/h6&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;介绍&lt;/li&gt;
+  &lt;li&gt;这本书适合哪些人&lt;/li&gt;
+  &lt;li&gt;这本书不适合哪些人&lt;/li&gt;
+  &lt;li&gt;单元测试&lt;/li&gt;
+  &lt;li&gt;本书的一些约定&lt;/li&gt;
+  &lt;li&gt;Safari® Books Online&lt;/li&gt;
+  &lt;li&gt;如何联系我们&lt;/li&gt;
+  &lt;li&gt;感谢&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;正文&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;JavaScript革命
+    &lt;ul&gt;
+      &lt;li&gt;JavaScript的优势
+        &lt;ul&gt;
+          &lt;li&gt;性能&lt;/li&gt;
+          &lt;li&gt;对象&lt;/li&gt;
+          &lt;li&gt;语法&lt;/li&gt;
+          &lt;li&gt;第一类功能&lt;/li&gt;
+          &lt;li&gt;事件&lt;/li&gt;
+          &lt;li&gt;重用性&lt;/li&gt;
+          &lt;li&gt;网络结果 &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;剖析一个经典的现代JavaScrip应用程序
+        &lt;ul&gt;
+          &lt;li&gt;基础构架&lt;/li&gt;
+          &lt;li&gt;JSON：数据存储和交换&lt;/li&gt;
+          &lt;li&gt;NoSQL 数据存储&lt;/li&gt;
+          &lt;li&gt;RESTful JSON Web服务&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;方法
+    &lt;ul&gt;
+      &lt;li&gt;副作用降到最低&lt;/li&gt;
+      &lt;li&gt;方法定义
+        &lt;ul&gt;
+          &lt;li&gt;有名的函数表达式&lt;/li&gt;
+          &lt;li&gt;匿名函数&lt;/li&gt;
+          &lt;li&gt;立即调用方法表达式&lt;/li&gt;
+          &lt;li&gt;方法上下文&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;方法作用域
+        &lt;ul&gt;
+          &lt;li&gt;提升&lt;/li&gt;
+          &lt;li&gt;闭包&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;方法设计
+        &lt;ul&gt;
+          &lt;li&gt;命名参数变量&lt;/li&gt;
+          &lt;li&gt;方法的多态性&lt;/li&gt;
+          &lt;li&gt;泛型和集合的多态性&lt;/li&gt;
+          &lt;li&gt;方法链和流行的API&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;函数式编程
+        &lt;ul&gt;
+          &lt;li&gt;无状态的函数（也叫做纯函数）&lt;/li&gt;
+          &lt;li&gt;部分应用程序和柯里化&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;异步操作
+        &lt;ul&gt;
+          &lt;li&gt;回调函数&lt;/li&gt;
+          &lt;li&gt;允诺和延迟&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;总结&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;对象
+    &lt;ul&gt;
+      &lt;li&gt;经典的继承已经过时了&lt;/li&gt;
+      &lt;li&gt;流行式的JavaScript&lt;/li&gt;
+      &lt;li&gt;原型
+        &lt;ul&gt;
+          &lt;li&gt;委托原型&lt;/li&gt;
+          &lt;li&gt;原型克隆&lt;/li&gt;
+          &lt;li&gt;享元模式&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;对象的创建&lt;/li&gt;
+      &lt;li&gt;工厂&lt;/li&gt;
+      &lt;li&gt;带有时间戳的原型继承&lt;/li&gt;
+      &lt;li&gt;总结&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;模块
+    &lt;ul&gt;
+      &lt;li&gt;模型化原则&lt;/li&gt;
+      &lt;li&gt;接口&lt;/li&gt;
+      &lt;li&gt;模块模式&lt;/li&gt;
+      &lt;li&gt;异步模块定义
+        &lt;ul&gt;
+          &lt;li&gt;插件&lt;/li&gt;
+          &lt;li&gt;node式模块&lt;/li&gt;
+          &lt;li&gt;npm&lt;/li&gt;
+          &lt;li&gt;ES6 模块&lt;/li&gt;
+          &lt;li&gt;使用CommonJS、npm、Grunt、Browserify构建客户端代码
+            &lt;ul&gt;
+              &lt;li&gt;定义应用&lt;/li&gt;
+              &lt;li&gt;功能实现&lt;/li&gt;
+              &lt;li&gt;捆绑和部署&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;结论&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;关注点分离
+    &lt;ul&gt;
+      &lt;li&gt;客户端关注点
+        &lt;ul&gt;
+          &lt;li&gt;模块管理&lt;/li&gt;
+          &lt;li&gt;事件&lt;/li&gt;
+          &lt;li&gt;模型视图控制器 / MV*&lt;/li&gt;
+          &lt;li&gt;介绍和DOM操作&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;服务端关注点
+        &lt;ul&gt;
+          &lt;li&gt;Node和Express入门&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;总结&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;访问控制
+    &lt;ul&gt;
+      &lt;li&gt;认证
+        &lt;ul&gt;
+          &lt;li&gt;密码&lt;/li&gt;
+          &lt;li&gt;证书&lt;/li&gt;
+          &lt;li&gt;多因素身份认证&lt;/li&gt;
+          &lt;li&gt;联邦及委托认证&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;授权
+        &lt;ul&gt;
+          &lt;li&gt;授权应用程序&lt;/li&gt;
+          &lt;li&gt;OAuth 2.0&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;总结&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;日志
+    &lt;ul&gt;
+      &lt;li&gt;调试&lt;/li&gt;
+      &lt;li&gt;服务端操作&lt;/li&gt;
+      &lt;li&gt;安全&lt;/li&gt;
+      &lt;li&gt;审计&lt;/li&gt;
+      &lt;li&gt;业务分析
+        &lt;ul&gt;
+          &lt;li&gt;病毒因子&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;记录清单&lt;/li&gt;
+      &lt;li&gt;记录请求&lt;/li&gt;
+      &lt;li&gt;记录错误&lt;/li&gt;
+      &lt;li&gt;示例日志输出&lt;/li&gt;
+      &lt;li&gt;记录服务警告&lt;/li&gt;
+      &lt;li&gt;记录目标&lt;/li&gt;
+      &lt;li&gt;分析和仪表化&lt;/li&gt;
+      &lt;li&gt;记录客户端事件&lt;/li&gt;
+      &lt;li&gt;解读数据&lt;/li&gt;
+      &lt;li&gt;总结&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;构建RESTful API
+    &lt;ul&gt;
+      &lt;li&gt;可用性
+        &lt;ul&gt;
+          &lt;li&gt;专注&lt;/li&gt;
+          &lt;li&gt;一致性&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;自描述：超媒体
+        &lt;ul&gt;
+          &lt;li&gt;自解释&lt;/li&gt;
+          &lt;li&gt;超媒体即应用状态引擎&lt;/li&gt;
+          &lt;li&gt;HTML 作为一个API媒介类型&lt;/li&gt;
+          &lt;li&gt;Jade&lt;/li&gt;
+          &lt;li&gt;Jiron&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;响应的 API&lt;/li&gt;
+      &lt;li&gt;为速度的优化&lt;/li&gt;
+      &lt;li&gt;总结&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;功能切换
+    &lt;ul&gt;
+      &lt;li&gt;组织功能
+        &lt;ul&gt;
+          &lt;li&gt;一个功能的范围&lt;/li&gt;
+          &lt;li&gt;功能组&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;要素的寿命
+        &lt;ul&gt;
+          &lt;li&gt;开发&lt;/li&gt;
+          &lt;li&gt;脚手架&lt;/li&gt;
+          &lt;li&gt;产品测试&lt;/li&gt;
+          &lt;li&gt;功能转出&lt;/li&gt;
+          &lt;li&gt;默认激活&lt;/li&gt;
+          &lt;li&gt;完整继承&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;实现&lt;/li&gt;
+      &lt;li&gt;总结&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;国际化
+    &lt;ul&gt;
+      &lt;li&gt;总结&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A.JavaScript 风格指导&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;示例测试&lt;/li&gt;
+  &lt;li&gt;QUnit 入门&lt;/li&gt;
+  &lt;li&gt;代码质量&lt;/li&gt;
+  &lt;li&gt;最佳实践快速参考
+    &lt;ul&gt;
+      &lt;li&gt;缩进：一贯的风格&lt;/li&gt;
+      &lt;li&gt;使用分好&lt;/li&gt;
+      &lt;li&gt;花括号放在：右侧&lt;/li&gt;
+      &lt;li&gt;避免名字冲&lt;/li&gt;
+      &lt;li&gt;总是使用var&lt;/li&gt;
+      &lt;li&gt;一个方法使用一行var变量声明&lt;/li&gt;
+      &lt;li&gt;避免滥用常量&lt;/li&gt;
+      &lt;li&gt;必要的时候使用迭代器&lt;/li&gt;
+      &lt;li&gt;小心的私用if&lt;/li&gt;
+      &lt;li&gt;避免副作用&lt;/li&gt;
+      &lt;li&gt;不要使用switch&lt;/li&gt;
+      &lt;li&gt;不要使用eval()&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;索引&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 14 Oct 2014 05:42:29 +0800</pubDate>
+        <link>//github/2014/10/14/post-programing-javascript-applications/</link>
+        <guid isPermaLink="true">//github/2014/10/14/post-programing-javascript-applications/</guid>
+      </item>
+    
+      <item>
         <title>GitHub Pages 搭建博客</title>
         <description>&lt;p&gt;&lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt; 是一个非常好的静态博客系统服务网站，她接受任何人免费搭建自己的静态网站，只不过代码是公开的，仅仅是为了搭建自己的博客系统，用于学习交流，那简直是太完美了。&lt;/p&gt;
 
