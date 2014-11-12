@@ -7,6 +7,133 @@
     <atom:link href="//feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>npm中的package.json介绍</title>
+        <description>&lt;h4 id=&quot;section&quot;&gt;介绍&lt;/h4&gt;
+
+&lt;p&gt;这个文档里有所有你需要知道的package.json字段的信息，package.json必须是一个JSON，而不仅仅是JavaScript对象字面量。&lt;/p&gt;
+
+&lt;p&gt;这个配置文件里设置的配置作用是会受到npm config里的配置影响到的。&lt;/p&gt;
+
+&lt;h5 id=&quot;name&quot;&gt;name&lt;/h5&gt;
+
+&lt;p&gt;在package.json中最重要的信息字段就是&lt;code&gt;name&lt;/code&gt;和&lt;code&gt;version&lt;/code&gt;。这2个也是确实必须包含的字段，如果没有这2个字段，你的这个包就安装不上。name和version字段组合在一起就形成了一个唯一的标示。包的变动需要伴随着版本号的变动。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;name&lt;/code&gt;就是你的这个包叫什么，一些提示：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不要把”js”和”node”写到name里。自从你开始写这个package.json文件开始，这个项目就是一个js项目，所以你不需要重复指明了，并且你还可以在下面要讲到的&lt;code&gt;engines&lt;/code&gt;字段里可以配置nodejs的版本。&lt;/li&gt;
+  &lt;li&gt;这个名字将来会放到URL的结尾处、作为命令行参数使用和作为文件夹名字。所以，任何会引起url不安全的字符都不能使用，并且不能以&lt;em&gt;点&lt;/em&gt;和&lt;em&gt;下划线&lt;/em&gt;开头。&lt;/li&gt;
+  &lt;li&gt;这个名字将来会被作为require()的参数传入到程序中，所以应该尽量的短一些，并且能够见名知意。&lt;/li&gt;
+  &lt;li&gt;你还需要在&lt;a href=&quot;http://registry.npmjs.org/&quot;&gt;这里&lt;/a&gt;查看你的名字是否被占用。假如你的包名字是：npmdemo，你可以这样访问这个地址查看是否被占用：http://registry.npmjs.org/npmdemo&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;包名也可能会被加上范围前缀，比如&lt;code&gt;@myorg/mypackage&lt;/code&gt;。具体可以找到 &lt;code&gt;npm-scope(7)&lt;/code&gt;查看更多细节。&lt;/p&gt;
+
+&lt;h5 id=&quot;version&quot;&gt;version&lt;/h5&gt;
+
+&lt;p&gt;在package.json中最重要的信息字段就是&lt;code&gt;name&lt;/code&gt;和&lt;code&gt;version&lt;/code&gt;。这2个也是确实必须包含的字段，如果没有这2个字段，你的这个包就安装不上。name和version字段组合在一起就形成了一个唯一的标示。包的变动需要伴随着版本号的变动。&lt;/p&gt;
+
+&lt;p&gt;你的版本号必须能够被 &lt;code&gt;node-semver&lt;/code&gt;正确解析，也就是说符合语义化的版本发布规则。这个模块已经跟npm绑定在一起了。(&lt;code&gt;npm install semver&lt;/code&gt; 来安装使用)&lt;/p&gt;
+
+&lt;p&gt;更多关于版本和取值范围的介绍可以看 semver(7)。&lt;/p&gt;
+
+&lt;h5 id=&quot;description&quot;&gt;description&lt;/h5&gt;
+
+&lt;p&gt;是一个字符串形式的描述，可以帮助人们找到你的包，它出现在 &lt;code&gt;npm search&lt;/code&gt; 列表里。&lt;/p&gt;
+
+&lt;h5 id=&quot;keywords&quot;&gt;keywords&lt;/h5&gt;
+
+&lt;p&gt;关于包关键字的一个字符串数组，可以帮助人们找到你的包，它出现在&lt;code&gt;npm search&lt;/code&gt;列表里。&lt;/p&gt;
+
+&lt;h5 id=&quot;homepage&quot;&gt;homepage&lt;/h5&gt;
+
+&lt;p&gt;项目首页的链接地址&lt;/p&gt;
+
+&lt;h5 id=&quot;bugs&quot;&gt;bugs&lt;/h5&gt;
+
+&lt;p&gt;里面包含了&lt;code&gt;url&lt;/code&gt;和&lt;code&gt;email&lt;/code&gt;字段，表示当使用者发现这个包有问题的时候，把问题提交到哪个地址或者发往哪个邮箱。&lt;/p&gt;
+
+&lt;p&gt;这个字段看起来可能这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	{ &quot;url&quot; : &quot;http://github.com/owner/project/issues&quot;
+	, &quot;email&quot; : &quot;project@hostname.com&quot;
+	}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你可以写上上面的任何一个字段或者两个字段都写上，你也可以使用一个地址字符串代替这个对象。&lt;/p&gt;
+
+&lt;p&gt;如果提供得是url形式的字符串，会被用于&lt;code&gt;npm bugs&lt;/code&gt;命令。&lt;/p&gt;
+
+&lt;h5 id=&quot;licese&quot;&gt;licese&lt;/h5&gt;
+
+&lt;p&gt;你应该给你的包提供一个授权协议，这样人们才能知道如何才能获得你的使用授权，有哪些限制。&lt;/p&gt;
+
+&lt;p&gt;最简单的方式就是使用标准的类似BSD-3-Clause或者MIT等授权。就像这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	{&quot;licese&quot;:&quot;BSD-3-Clause&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你可以查看&lt;a href=&quot;https://spdx.org/licenses/&quot;&gt;完整的授权类型&lt;/a&gt;。理想情况下推荐你选择 &lt;a href=&quot;http://opensource.org/licenses/alphabetical&quot;&gt;OSI&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;你也可以在你的包文件里包含一个LICESE文件。&lt;/p&gt;
+
+&lt;h5 id=&quot;authorcontributors&quot;&gt;author/contributors&lt;/h5&gt;
+
+&lt;p&gt;作者是一个人，这里是一个对象存储，里面有名字、邮箱、主页地址等信息，就像这样：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;		{ &quot;name&quot; : &quot;Barney Rubble&quot;
+		, &quot;email&quot; : &quot;b@rubble.com&quot;
+		, &quot;url&quot; : &quot;http://barnyrubble.tumblr.com/&quot;
+		}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;你也可以像如下形式的简写，npm也能够解析：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	&quot;Barney Rubble &amp;lt;b@rubble.com&amp;gt; (http://barnyrubble.tumblr.com/)&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;邮箱和网址都是可选的。&lt;/p&gt;
+
+&lt;p&gt;npm也设置了一个最高级别的维护字段”maintainers”用户保存这个包的贡献者。&lt;/p&gt;
+
+&lt;h5 id=&quot;files&quot;&gt;files&lt;/h5&gt;
+
+&lt;p&gt;这个字段是一个文件列表数组。如果你在数组的一项里书写的是一个文件夹，那么这个文件夹下地所有的文件默认是被包含进去的（除非你在其他的忽略文件中明确指出）。&lt;/p&gt;
+
+&lt;p&gt;你也可以书写一个&lt;code&gt;.npmignore&lt;/code&gt;文件放在你的包的根目录，这个文件里列举的文件会被包忽略，就像&lt;code&gt;.gitignore&lt;/code&gt;的作用一样。&lt;/p&gt;
+
+&lt;h5 id=&quot;main&quot;&gt;main&lt;/h5&gt;
+
+&lt;p&gt;这个字段是模块的ID，也是你整个包文件运行的入口。具体哪个文件是你的入口文件，这里是设置的地方。&lt;/p&gt;
+
+&lt;h5 id=&quot;bin&quot;&gt;bin&lt;/h5&gt;
+
+&lt;p&gt;经常有一些包可以在全局就可以运行，那么你就可以在这里设置，设置代码类似：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	{ &quot;bin&quot; : { &quot;npm&quot; : &quot;./cli.js&quot; } } 所以当你安装了这个包之后，npm就会创建`cli.js`软链接放在`/usr/local/bin/npm`下面。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面的两种方式是等价的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	{ &quot;name&quot;: &quot;my-program&quot;
+	, &quot;version&quot;: &quot;1.2.5&quot;
+	, &quot;bin&quot;: &quot;./path/to/program&quot; }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;跟这个是一样得：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;	{ &quot;name&quot;: &quot;my-program&quot;
+	, &quot;version&quot;: &quot;1.2.5&quot;
+	, &quot;bin&quot; : { &quot;my-program&quot; : &quot;./path/to/program&quot; } }
+&lt;/code&gt;&lt;/pre&gt;
+
+</description>
+        <pubDate>Wed, 12 Nov 2014 22:43:00 +0800</pubDate>
+        <link>//github/2014/11/12/post-package-json-in-npm/</link>
+        <guid isPermaLink="true">//github/2014/11/12/post-package-json-in-npm/</guid>
+      </item>
+    
+      <item>
         <title>使用Node.js,Express,MongoDB和AngularJS创建简单地CRUD,第一部分</title>
         <description>&lt;h2 id=&quot;section&quot;&gt;背景&lt;/h2&gt;
 
