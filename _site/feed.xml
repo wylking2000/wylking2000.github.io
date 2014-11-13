@@ -7,6 +7,26 @@
     <atom:link href="//feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>在svn中如何创建一个新的分支</title>
+        <description>&lt;p&gt;假如你的具有svn主干和分支的权限，
+主干路径：svn://svn.xxxdemo.com/project-a/trunk
+分支路径：svn://svn.xxxdemo.com/project-a/brunches&lt;/p&gt;
+
+&lt;p&gt;那么你希望创建一个新的分支路径是：svn://svn.xxxdemo.com/project-a/brunches/20141113-item-feature&lt;/p&gt;
+
+&lt;p&gt;那么你的可以在terminal里输入如下命令（假设你已经在trunk目录）：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    svn copy svn://svn.xxxdemo.com/project-a/trunk svn://svn.xxxdemo.com/project-a/branches/20141113-item-feature -m &#39;This is my new branch, I will develop same new features&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;好了，通过上面的命令，你就创建完成了一个新的分支：svn://svn.xxxdemo.com/project-a/brunches/20141113-item-feature ，你现在可以检出进行开发了&lt;/p&gt;
+</description>
+        <pubDate>Thu, 13 Nov 2014 22:55:29 +0800</pubDate>
+        <link>//github/2014/11/13/post-how-to-create-a-new-svn-branch/</link>
+        <guid isPermaLink="true">//github/2014/11/13/post-how-to-create-a-new-svn-branch/</guid>
+      </item>
+    
+      <item>
         <title>npm中的package.json介绍</title>
         <description>&lt;h4 id=&quot;section&quot;&gt;介绍&lt;/h4&gt;
 

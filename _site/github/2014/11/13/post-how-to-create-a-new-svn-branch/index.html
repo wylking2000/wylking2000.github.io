@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>在svn中如何创建一个新的分支 &#8211; FrontEnder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="如何使用svn命令行创建一个新的svn分支">
+    <meta name="author" content="Long Wang">
+    <meta name="keywords" content="github">
+    <link rel="canonical" href="//github/2014/11/13/post-how-to-create-a-new-svn-branch/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    <!--
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300' rel='stylesheet' type='text/css'>
+    -->
+</head>
+
+<body class="">
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="/" class="site-title">FrontEnder</a>
+      <nav class="site-nav right">
+        <a href="/about/">About</a>
+
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+
+
+<div class="post-header mb2">
+  <h1 class="py2">在svn中如何创建一个新的分支</h1>
+  <span class="post-meta">Nov 13, 2014</span><br>
+  
+  <span class="post-meta small">1 minute read</span>
+</div>
+
+<article class="post-content">
+  <p>假如你的具有svn主干和分支的权限，
+主干路径：svn://svn.xxxdemo.com/project-a/trunk
+分支路径：svn://svn.xxxdemo.com/project-a/brunches</p>
+
+<p>那么你希望创建一个新的分支路径是：svn://svn.xxxdemo.com/project-a/brunches/20141113-item-feature</p>
+
+<p>那么你的可以在terminal里输入如下命令（假设你已经在trunk目录）：</p>
+
+<pre><code>    svn copy svn://svn.xxxdemo.com/project-a/trunk svn://svn.xxxdemo.com/project-a/branches/20141113-item-feature -m 'This is my new branch, I will develop same new features'
+</code></pre>
+
+<p>好了，通过上面的命令，你就创建完成了一个新的分支：svn://svn.xxxdemo.com/project-a/brunches/20141113-item-feature ，你现在可以检出进行开发了</p>
+
+</article>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+  <div class="p2 wrap">
+    <div class="measure mt1 center">
+      <small>
+        &copy;2014 By <a href="mailto:yonglong.wyl@alibaba-inc.com">龙芒</a>
+      </small>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
