@@ -5557,7 +5557,8 @@ a.list-group-item-danger.active:focus {
 }
 
 .panel-body {
-    padding: 15px
+    padding: 15px;
+    background-color: #f9cdad;
 }
 
 .panel-heading {
