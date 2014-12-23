@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9debd2a5-282b-45e1-8234-972097f21f22" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/读书/2010-01-01-Book-List-2010.md" afterPath="$PROJECT_DIR$/_posts/读书/2010-01-01-Book-List-2010.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/读书/2011-01-01-Book-List-2011.md" afterPath="$PROJECT_DIR$/_posts/读书/2011-01-01-Book-List-2011.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/读书/2012-01-01-Book-List-2012.md" afterPath="$PROJECT_DIR$/_posts/读书/2012-01-01-Book-List-2012.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/读书/2013-01-01-Book-List-2013.md" afterPath="$PROJECT_DIR$/_posts/读书/2013-01-01-Book-List-2013.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/读书/2014-01-01-Book-List-2014.md" afterPath="$PROJECT_DIR$/_posts/读书/2014-01-01-Book-List-2014.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/技术/2014-09-25-build-a-blog-by-github-pages.md" afterPath="$PROJECT_DIR$/_posts/技术/2014-09-25-build-a-blog-by-github-pages.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/技术/2014-10-16-post-create-a-single-crud-with-nodejs-express-mongodb-and-angularjs-part-1.md" afterPath="$PROJECT_DIR$/_posts/技术/2014-10-16-post-create-a-single-crud-with-nodejs-express-mongodb-and-angularjs-part-1.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="wylking2000.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,11 +33,66 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="2010-01-01-Book-List-2010.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_posts/读书/2010-01-01-Book-List-2010.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18947369" vertical-offset="0" max-vertical-offset="660">
-              <caret line="6" column="331" selection-start-line="6" selection-start-column="331" selection-end-line="6" selection-end-column="331" />
+            <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="450">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2011-01-01-Book-List-2011.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_posts/读书/2011-01-01-Book-List-2011.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="450">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2012-01-01-Book-List-2012.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_posts/读书/2012-01-01-Book-List-2012.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="450">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2013-01-01-Book-List-2013.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_posts/读书/2013-01-01-Book-List-2013.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="690">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2014-01-01-Book-List-2014.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/读书/2014-01-01-Book-List-2014.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.062240664" vertical-offset="0" max-vertical-offset="570">
+              <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -50,6 +112,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/_posts/技术/2014-09-25-build-a-blog-by-github-pages.md" />
+        <option value="$PROJECT_DIR$/_posts/技术/2014-10-16-post-create-a-single-crud-with-nodejs-express-mongodb-and-angularjs-part-1.md" />
+        <option value="$PROJECT_DIR$/_posts/读书/2010-01-01-Book-List-2010.md" />
+        <option value="$PROJECT_DIR$/_posts/读书/2011-01-01-Book-List-2011.md" />
+        <option value="$PROJECT_DIR$/_posts/读书/2012-01-01-Book-List-2012.md" />
+        <option value="$PROJECT_DIR$/_posts/读书/2013-01-01-Book-List-2013.md" />
+        <option value="$PROJECT_DIR$/_posts/读书/2014-01-01-Book-List-2014.md" />
       </list>
     </option>
   </component>
@@ -104,6 +173,42 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="wylking2000.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wylking2000.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wylking2000.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_posts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="读书" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wylking2000.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wylking2000.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_posts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="技术" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -236,6 +341,102 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18947369" vertical-offset="0" max-vertical-offset="660">
           <caret line="6" column="331" selection-start-line="6" selection-start-column="331" selection-end-line="6" selection-end-column="331" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5" vertical-offset="0" max-vertical-offset="120">
+          <caret line="1" column="3" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="795">
+          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/技术/2014-09-25-build-a-blog-by-github-pages.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="795">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/技术/2014-10-16-post-create-a-single-crud-with-nodejs-express-mongodb-and-angularjs-part-1.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12793177" vertical-offset="0" max-vertical-offset="10635">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/读书/2010-01-01-Book-List-2010.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="450">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/读书/2011-01-01-Book-List-2011.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="450">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/读书/2012-01-01-Book-List-2012.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="450">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/读书/2013-01-01-Book-List-2013.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="690">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/读书/2014-01-01-Book-List-2014.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.062240664" vertical-offset="0" max-vertical-offset="570">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
           <folding />
         </state>
       </provider>

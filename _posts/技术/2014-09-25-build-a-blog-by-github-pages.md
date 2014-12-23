@@ -2,7 +2,7 @@
 layout: post
 title: GitHub Pages 搭建博客
 category: 技术
-tags: 博客
+tags: 技术
 keywords: 博客 Github Pages jekyll
 description: 使用GitHub Pages网站提供的免费服务快捷的搭建一个静态博客系统，永久免费托管，速度还非常快
 ---

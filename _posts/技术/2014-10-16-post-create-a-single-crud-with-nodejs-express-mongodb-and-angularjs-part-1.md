@@ -2,7 +2,7 @@
 layout: post
 title: 使用Node.js,Express,MongoDB和AngularJS创建简单地CRUD,第一部分
 category: 技术
-tags: 博客
+tags: 技术
 keywords: 博客 Github Pages jekyll
 description: 使用Node.js,Express,MongoDB和AngularJS创建简单地CRUD,第一部分
 ---
