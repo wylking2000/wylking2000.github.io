@@ -1,16 +1,47 @@
-# Site settings
-title: FrontEnder
-email: wylking2000@163.com
-author: Long Wang
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
-baseurl: ""
-url: "/"
-google_analytics:
-animated: false
+permalink: /:year/:month/:day/:title.html
+paginate: 10
+markdown: redcarpet
 
-# Build settings
-markdown: kramdown
-permalink: pretty
-paginate: 3
-sass:
-  compressed: true
+# 作者信息
+author:
+  name: Yonglong Wang
+  email: wylking2000@163.com
+  link: http://www.frontender.cn/
+  weibo: http://weibo.com/orangeissweet
+  github: http://github.com/wylking2000
+  music: http://site.douban.com/wylking2000
+  linkedin: https://www.linkedin.com/pub/anya-lin/81/91/232
+
+# 站点信息
+title: a frontender engineer
+description: write a series of technical article
+url: http://www.frontender.cn/
+rss_url: /pages/atom.xml
+
+# gavatar头像及Favicon
+gavatar: /public/imgs/favicon.png
+favicon: /public/imgs/favicon.png
+
+# google analytics 设置
+ga:
+  id: UA-57953215-1
+  url: www.frontender.cn
+
+# disqus 设置
+disqus:
+  shortname: wylking2000
+
+# 主题设置，自动激活某个标签
+active: 读书
+
+# 首页除了最新文章外显示分类
+cates:
+  - 技术
+  - 读书
+
+# 中文本地化
+locals:
+  tags: 标签
+  about: 关于
+  newest: 最新文章
+  archive: 归档

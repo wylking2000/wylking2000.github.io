@@ -1,0 +1,14 @@
+.article-inner-nav{
+    margin: 0;
+    padding: 0;
+    list-style: circle inside;
+    width: 387px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.8;
+}
+.aside2 .list-group-ul{
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+}

@@ -1,4 +1,2 @@
-wylking2000.github.io
-=====================
-
-home page for blog
+###### fork from 
+ - http://github.com/lay1010
