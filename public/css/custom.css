@@ -1,3 +1,13 @@
+.article-nav-table{
+    position:fixed;
+    right:20px;
+    top:120px;
+    display:none;
+}
+.article-inner-nav-wapper{
+    background-color: seashell;
+    color: #ff4366;
+}
 .article-inner-nav{
     margin: 0;
     padding: 0;

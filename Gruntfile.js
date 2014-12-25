@@ -11,7 +11,7 @@ module.exports = function(grunt){
 
         uglify: {
             options: {
-                banner: '/*<%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */ \n',
+                banner: '/* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */ \n',
                 separator: ';'
             },
             build: {
@@ -21,45 +21,41 @@ module.exports = function(grunt){
         },
         cssmin: {
             options: {
-                banner: '/*<%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */ \n'
+                banner: '/* <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */ \n'
             },
             minify: {
                 expend: true,
                 src: ['public/css/bootstrap.css', 'public/css/font-awesome.css','public/css/highlight.css', 'public/js/prettify/prettify.css', 'public/css/base.css', 'public/css/custom.css'],
                 dest: 'public/css/site.min.css'
             }
-        }
-    });
+        },
 
-    // 加载提供"uglify"任务的插件
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
+        // https://github.com/dannygarcia/grunt-jekyll
+        // https://www.npmjs.com/package/grunt-jekyll
 
-    // 默认任务
-    grunt.registerTask('default', ['uglify', 'cssmin']);
 
-    /*grunt.initConfig({
+        // jekyll node version : https://github.com/flatiron/blacksmith
+
         jekyll: {                             // Task
-            options: {                          // Universal options
-                bundleExec: true,
-                src : '.'
-            },
-            dist: {                             // Target
-                options: {                        // Target options
-                    dest: '_site',
-                    config: '_config.yml,_config.build.yml'
+            serve: {                          // Universal options
+                options: {
+                    serve: true,
+                    watch: true,
+                    port: 4000
                 }
             },
-            serve: {                            // Another target
+            build: {
                 options: {
-                    dest: '_site',
-                    drafts: true
+                    dest: '_site'
                 }
             }
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-jekyll');
 
-    grunt.registerTask('default', ['jekyll']);*/
+    grunt.registerTask('serve', ['jekyll:serve']);
+    grunt.registerTask('build', ['uglify', 'cssmin', 'jekyll:build']);
 };
