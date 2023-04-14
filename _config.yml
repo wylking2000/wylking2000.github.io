@@ -45,3 +45,6 @@ locals:
   about: 关于
   newest: 最新文章
   archive: 归档
+
+- name: Codeball AI Code Review
+  uses: sturdy-dev/codeball-action@v2.6.0
